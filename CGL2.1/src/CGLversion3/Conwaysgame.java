@@ -5,13 +5,14 @@ package CGLversion3;
  */
 public class Conwaysgame {
 //creating Conways game class 
-	private int size;
+	private int size,s1;
 	public board currentgen;
 	board nextgen;
 //startGeneration helps to Initialise the board with the live cells and creates the board 
-	public void startGeneration(int[][] arr, int size) {
+	public void startGeneration(int[][] arr, int size,int s1) {
 		this.size = size;
-		this.currentgen = new board(size);
+		this.s1 = s1;
+		this.currentgen = new board(size,s1);
 		this.currentgen.createboard();
 		for (int i = 0; i < arr.length; i++) {
 			int row = arr[i][0];
@@ -22,7 +23,7 @@ public class Conwaysgame {
 	}
 //nextgener helps to create the next generation
 	public void nextgener() {
-		nextgen = new board(size);
+		nextgen = new board(size,s1);
 		nextgen.createboard();
 		nextgen = currentgen.generateNextGeneration(nextgen);
 		currentgen = nextgen;
@@ -31,7 +32,7 @@ public class Conwaysgame {
 //creates Nth Generation 
 	public void nthGeneration(int n) {
 		for (int i = 0; i < n; i++) {
-			nextgen = new board(size);
+			nextgen = new board(size,s1);
 			nextgen.createboard();
 			nextgen = currentgen.generateNextGeneration(nextgen);
 			if (currentgen.printBoard().equals(nextgen.printBoard())) {
@@ -44,7 +45,7 @@ public class Conwaysgame {
 //Creates infinite generation by comparing the current generation and the next generation
 	public void infiniteGeneration() {
 		for(;;) {
-			nextgen=new board(size);
+			nextgen=new board(size,s1);
 			nextgen.createboard();
 			nextgen=currentgen.generateNextGeneration(nextgen);
 			if(currentgen.printBoard().equals(nextgen.printBoard())) {

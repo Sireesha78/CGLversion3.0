@@ -4,16 +4,18 @@ package CGLversion3;
 public class board {								
 	public cell[][] cell;
 	private int n;
+	private int m;
 
-	public board(int n) {
+	public board(int n, int m) {
 		this.n = n;
-		this.cell = new cell[n][n];
+		this.m = m;
+		this.cell = new cell[n][m];
 	}
 //Creating board method
 	public void createboard() {
 
 		for (int i = 0; i < this.n; i++) {
-			for (int j = 0; j < this.n; j++) {
+			for (int j = 0; j < this.m; j++) {
 				this.cell[i][j] = new cell(false);
 
 			}
@@ -25,7 +27,7 @@ public class board {
 	public String printBoard() {
 		String con = "";
 		for (int i = 0; i < this.n; i++) {
-			for (int j = 0; j < this.n; j++) {
+			for (int j = 0; j < this.m; j++) {
 				if (cell[i][j].status==true) {
 
 					con += "*";
@@ -34,7 +36,7 @@ public class board {
 
 					con += ".";
 
-					if (j == this.n - 1 && i < this.n - 1) {
+					if (j == this.m - 1 && i < this.n - 1) {
 						con = con + "\n";
 					}
 				}
@@ -45,42 +47,46 @@ public class board {
 		return con;
 	}
 	// modular division for corner cases  (Took help from team mate Sai chandra)
-	public int modularDiv(int m) {
+	public int modularDiv(int mod) {
 		
-		return (((m % n) + n) % n);
+		return (((mod % n) + n) % n);
+	}
+	public int modular1(int mod) {
+		
+		return (((mod % m) + m) % m);
 	}
 	//Generating Next Generation board by checking 8 neighbours of the cell
 	public board generateNextGeneration(board gen) {
         for(int i=0;i<this.n;i++){
-            for(int j=0;j<this.n;j++){
+            for(int j=0;j<this.m;j++){
             	//statusing all the conditions for the cells to status for the next generations. 
                 int count=0;
-                if(this.cell[modularDiv(i-1)][modularDiv(j-1)].status){
+                if(this.cell[modularDiv(i-1)][modular1(j-1)].status){
                     count+=1;
                 }
-                if(this.cell[modularDiv(i-1)][modularDiv(j)].status){
+                if(this.cell[modularDiv(i-1)][modular1(j)].status){
                     count+=1;
                 }
-                if(this.cell[modularDiv(i-1)][modularDiv(j+1)].status){
+                if(this.cell[modularDiv(i-1)][modular1(j+1)].status){
                     count+=1;
                 }
-                if(this.cell[modularDiv(i)][modularDiv(j-1)].status){
+                if(this.cell[modularDiv(i)][modular1(j-1)].status){
                     count+=1;
                 }
-                if(this.cell[modularDiv(i)][modularDiv(j+1)].status){
+                if(this.cell[modularDiv(i)][modular1(j+1)].status){
                     count+=1;
                 }
-                if(this.cell[modularDiv(i+1)][modularDiv(j-1)].status){
+                if(this.cell[modularDiv(i+1)][modular1(j-1)].status){
                     count+=1;
                 }
-                if(this.cell[modularDiv(i+1)][modularDiv(j)].status) {
+                if(this.cell[modularDiv(i+1)][modular1(j)].status) {
                 	
                 	count+=1;
                 }
-                if(this.cell[modularDiv(i+1)][modularDiv(j+1)].status){
+                if(this.cell[modularDiv(i+1)][modular1(j+1)].status){
                     count+=1;
                 }
-                if(this.cell[modularDiv(i)][modularDiv(j)].status){
+                if(this.cell[modularDiv(i)][modular1(j)].status){
                     if(count==2 || count==3){
                         gen.cell[i][j].status=true;
                         

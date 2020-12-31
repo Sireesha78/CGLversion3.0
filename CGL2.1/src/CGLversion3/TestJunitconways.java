@@ -8,7 +8,7 @@ public class TestJunitconways {
 	public void conwaytest1() {
 		Conwaysgame con=new Conwaysgame();
 		int[][] arr={{1,3},{1,4},{2,4},{5,3},{5,4},{6,2},{6,3},{7,5},{8,4}};
-		con.startGeneration(arr, 10);
+		con.startGeneration(arr, 10, 10);
 		con.nextgener();
 		Assertions.assertEquals("..........\n"
 				+ "...**.....\n"

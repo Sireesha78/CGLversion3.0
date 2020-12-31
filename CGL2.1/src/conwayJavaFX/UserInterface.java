@@ -268,8 +268,8 @@ public class UserInterface {
 	Conwaysgame con=new Conwaysgame();
 	private void loadImageData() {
 		try {
-			con.startGeneration(w,boardSizeHeight);
-			for(int i=0;i<boardSizeHeight;i++) {
+			con.startGeneration(w,boardSizeWidth,boardSizeHeight);
+			for(int i=0;i<boardSizeWidth;i++) {
 				for(int j=0;j<boardSizeHeight;j++) {
 					if(con.currentgen.cell[i][j].status==true) {
 						Rectangle a = new Rectangle(6+i*cellSize,6+j*cellSize,5,5);
@@ -322,7 +322,7 @@ public class UserInterface {
 		window.getChildren().remove(evenCanvas);
 		evenCanvas=new Pane();
 		con.nextgener();
-		for(int i=0;i<boardSizeHeight;i++) {
+		for(int i=0;i<boardSizeWidth;i++) {
 			for(int j=0;j<boardSizeHeight;j++) {
 				if(con.currentgen.cell[i][j].status==true) {
 					Rectangle a = new Rectangle(6+i*cellSize,6+j*cellSize,5,5);
